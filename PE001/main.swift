@@ -145,8 +145,9 @@ printTimeElapsedWhenRunningCode{
     }
 }
 
-print("---- ---- ASYNC ---- ----")
+print("---- ---- ASYNC ---- ----") //async blocks inside sync blocks to make sure one async run is running at one time
 
+DispatchQueue.global(qos: .userInteractive).sync{
 printTimeElapsedWhenRunningCode{
     var result = 8
     DispatchQueue.global(qos: .userInteractive).async {
@@ -159,7 +160,9 @@ printTimeElapsedWhenRunningCode{
         }
     }
 }
+}
 
+DispatchQueue.global(qos: .userInteractive).sync{
 printTimeElapsedWhenRunningCode{
     var result = 8
     DispatchQueue.global(qos: .userInteractive).async {
@@ -172,7 +175,9 @@ printTimeElapsedWhenRunningCode{
         }
     }
 }
+}
 
+DispatchQueue.global(qos: .userInteractive).sync{
 printTimeElapsedWhenRunningCode{
     var result = 8
     DispatchQueue.global(qos: .userInteractive).async {
@@ -185,7 +190,9 @@ printTimeElapsedWhenRunningCode{
         }
     }
 }
+}
 
+DispatchQueue.global(qos: .userInteractive).sync{
 printTimeElapsedWhenRunningCode{
     var result = 8
     DispatchQueue.global(qos: .userInteractive).async {
@@ -198,7 +205,9 @@ printTimeElapsedWhenRunningCode{
         }
     }
 }
+}
 
+DispatchQueue.global(qos: .userInteractive).sync{
 printTimeElapsedWhenRunningCode{
     var result = 8
     DispatchQueue.global(qos: .userInteractive).async {
@@ -210,11 +219,10 @@ printTimeElapsedWhenRunningCode{
             i += 1
         }
     }
+}
 }
 
 print("---- ---- RESULT ---- ----")
 
-//delay to let the async wokr finish
-usleep(100)
-
-print("\(times.min()!) at index \(times.index(of: times.min()!)!)")
+print("Best time \(times.min()!) at index \(times.index(of: times.min()!)!)")
+print("Worst time \(times.max()!) at index \(times.index(of: times.max()!)!)")
